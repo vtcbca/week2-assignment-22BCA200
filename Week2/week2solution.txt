@@ -1,0 +1,39 @@
+sqlite> .open student.db
+
+sqlite> create table stud1(eid int primary key,name text);
+
+sqlite> insert into stud1 values(1,'om');
+sqlite> insert into stud1 values(2,'sai');
+sqlite> insert into stud1 values(3,'ram');
+sqlite> insert into stud1 values(4,'radha');
+sqlite> insert into stud1 values(5,'henil');
+sqlite> insert into stud1 values(6,'hiten');
+sqlite> insert into stud1 values(7,'milli');
+sqlite> insert into stud1 values(8,'thomas');
+sqlite> insert into stud1 values(9,'milan');
+sqlite> insert into stud1 values(10,'shyam');
+
+sqlite> create table stud_details(eid int primarykey,city text,mobile number,foreign key(eid) references stud1(eid));
+
+
+sqlite> insert into stud_details values(1,'surat',7016760334);
+sqlite> insert into stud_details values(2,'bardoli',8016766398);
+sqlite> insert into stud_details values(3,'baben',9017767898);
+sqlite> insert into stud_details values(4,'vyara',9944367797);
+sqlite> insert into stud_details values(5,'madhi',8844361297);
+sqlite> insert into stud_details values(6,'mahuva',9867543209);
+sqlite> insert into stud_details values(7,'bardoli',7788659034);
+sqlite> insert into stud_details values(8,'surat',9867775435);
+sqlite> insert into stud_details values(9,'ena',9898337794);
+sqlite> insert into stud_details values(10,'valod',9898337794);
+
+sqlite>sqlite> select stud1.eid,name ,city, mobile from stud_details inner join stud1 on stud1.eid=stud_details.eid and city ='surat';
+1|om|surat|7016760334
+8|thomas|surat|9867775435
+
+sqlite> select stud1.eid,name ,city, mobile from stud_details inner join stud1 on stud1.eid=stud_details.eid and city like 'b%';
+2|sai|bardoli|8016766398
+3|ram|baben|9017767898
+7|milli|bardoli|7788659034
+
+sqlite> update stud_details set mobile=9977878820 where city='surat';
